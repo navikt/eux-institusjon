@@ -1,0 +1,63 @@
+kind: Application
+apiVersion: nais.io/v1alpha1
+metadata:
+  name: {{ name }}
+  namespace: eessibasis
+  labels:
+    team: eessibasis
+spec:
+  image: {{ image }}
+  ingresses:
+    - {{ ingress }}
+  liveness:
+    path: /actuator/health
+    port: 8080
+    initialDelay: 40
+    timeout: 90
+  port: 8080
+  prometheus:
+    enabled: true
+    path: /actuator/prometheus
+  readiness:
+    path: /actuator/health
+    port: 8080
+    initialDelay: 60
+    timeout: 110
+  replicas:
+    min: {{ replicas.min }}
+    max: {{ replicas.max }}
+    cpuThresholdPercentage: 80
+  resources:
+    limits:
+      cpu: "1"
+      memory: {{ resources.limits.memory }}
+    requests:
+      cpu: "1"
+      memory: {{ resources.requests.memory }}
+  azure:
+    application:
+      enabled: true
+      allowAllUsers: true
+      replyURLs:
+        - "{{ ingress }}/callback"
+      claims:
+        extra:
+          - "NAVident"
+    sidecar:
+      enabled: true
+      autoLogin: true
+      autoLoginIgnorePaths:
+        - /api/**
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: java
+  accessPolicy:
+    outbound:
+      rules:
+        - application: {{ application.eux-rina-api.app }}
+  env:
+    - name: EUX_RINA_API_URL
+      value: {{ application.eux-rina-api.url }}
+    - name: EUX_RINA_API_SCOPE
+      value: {{ application.eux-rina-api.scope }}

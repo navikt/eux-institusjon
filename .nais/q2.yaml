@@ -1,0 +1,18 @@
+name: eux-institusjon-q2
+ingress: https://eux-institusjon-q2.intern.dev.nav.no
+
+application:
+  eux-rina-api:
+    app: eux-rina-api-q2
+    url: http://eux-rina-api-q2
+    scope: api://dev-gcp.eessibasis.eux-rina-api-q2/.default
+
+resources:
+  limits:
+    memory: 512Mi
+  requests:
+    memory: 512Mi
+
+replicas:
+  min: 2
+  max: 3

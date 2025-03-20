@@ -1,0 +1,16 @@
+spring:
+  main:
+    banner-mode: "off"
+
+logging:
+  structured:
+    format:
+      console: logstash
+
+client:
+  id: ${AZURE_APP_CLIENT_ID}
+  secret: ${AZURE_APP_CLIENT_SECRET}
+  tokenEndpoint: ${AZURE_OPENID_CONFIG_TOKEN_ENDPOINT}
+  euxRinaApi:
+    url: ${EUX_RINA_API_URL}
+    scope: ${EUX_RINA_API_SCOPE}
