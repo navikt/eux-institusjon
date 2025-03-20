@@ -6,6 +6,7 @@ import no.nav.eux.institusjon.model.Institusjon
 import no.nav.eux.institusjon.service.InstitusjonService
 import no.nav.eux.institusjon.webapp.model.InstitusjonApiModel
 import no.nav.security.token.support.core.api.Protected
+import no.nav.security.token.support.core.api.Unprotected
 import org.springframework.http.HttpStatus.OK
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -19,7 +20,7 @@ class InstitusjonController(
 
     val log = logger {}
 
-    @Protected
+    @Unprotected
     @GetMapping(
         value = ["/api/v1/institusjoner"],
         produces = ["application/json"]
