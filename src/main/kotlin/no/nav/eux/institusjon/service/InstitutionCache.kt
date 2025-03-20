@@ -16,6 +16,10 @@ class InstitutionCache(
         institusjonerMap[key] = institusjoner
     }
 
+    fun clear() {
+        institusjonerMap.clear()
+    }
+
     data class Key(
         val bucType: String,
         val landkode: String,

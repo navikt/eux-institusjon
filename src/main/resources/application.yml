@@ -14,3 +14,9 @@ client:
   euxRinaApi:
     url: ${EUX_RINA_API_URL}
     scope: ${EUX_RINA_API_SCOPE}
+
+no.nav.security.jwt:
+  issuer:
+    azuread:
+      discoveryurl: ${AZURE_APP_WELL_KNOWN_URL}
+      accepted-audience: ${AZURE_APP_CLIENT_ID}

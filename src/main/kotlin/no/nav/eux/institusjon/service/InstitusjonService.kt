@@ -29,22 +29,22 @@ class InstitusjonService(
             return institusjoner
         }
     }
+}
 
-    fun List<EuxInstitusjon>.institusjoner(bucType: String): List<Institusjon> {
-        return this
-            .filter { euxInstitusjon ->
-                euxInstitusjon.tilegnetBucs.any {
-                    it.bucType.uppercase() == bucType.uppercase() &&
-                            it.institusjonsrolle == "CounterParty"
-                }
+fun List<EuxInstitusjon>.institusjoner(bucType: String): List<Institusjon> {
+    return this
+        .filter { euxInstitusjon ->
+            euxInstitusjon.tilegnetBucs.any {
+                it.bucType.uppercase() == bucType.uppercase() &&
+                        it.institusjonsrolle == "CounterParty"
             }
-            .map {
-                Institusjon(
-                    institusjonId = it.id,
-                    navn = "${it.id} - ${it.navn}",
-                    landkode = it.landkode,
-                    bucType = bucType
-                )
-            }
-    }
+        }
+        .map {
+            Institusjon(
+                institusjonId = it.id,
+                navn = "${it.id} - ${it.navn}",
+                landkode = it.landkode,
+                bucType = bucType
+            )
+        }
 }
