@@ -1,6 +1,8 @@
 package no.nav.eux.institusjon
 
 import no.nav.eux.institusjon.integration.security.ClientProperties
+import no.nav.eux.institusjon.model.Institusjon
+import no.nav.eux.institusjon.service.InstitutionCache.Key
 import no.nav.eux.logging.RequestIdMdcFilter
 import no.nav.security.token.support.spring.api.EnableJwtTokenValidation
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -32,4 +34,6 @@ class ApplicationConfig {
     @Bean
     fun requestIdMdcFilter() = RequestIdMdcFilter()
 
+    @Bean
+    fun institusjonerMap(): HashMap<Key, List<Institusjon>> = HashMap()
 }

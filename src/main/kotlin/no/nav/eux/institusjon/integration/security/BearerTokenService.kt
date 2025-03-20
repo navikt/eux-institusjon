@@ -69,14 +69,10 @@ class BearerTokenService(
     val Client.scope
         get() =
             when (this) {
-                PDL_API -> clientProperties.pdlApi.scope
-                PDL_MOTTAK -> clientProperties.pdlMottak.scope
                 EUX_RINA_API -> clientProperties.euxRinaApi.scope
             }
 
     enum class Client {
-        PDL_API,
-        PDL_MOTTAK,
         EUX_RINA_API,
     }
 

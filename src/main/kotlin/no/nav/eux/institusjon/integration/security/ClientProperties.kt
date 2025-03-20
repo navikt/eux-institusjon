@@ -7,8 +7,6 @@ data class ClientProperties(
     val tokenEndpoint: String,
     val id: String,
     val secret: String,
-    val pdlApi: ApiClient,
-    val pdlMottak: ApiClient,
     val euxRinaApi: ApiClient,
 ) {
     data class ApiClient(
