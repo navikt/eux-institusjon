@@ -1,5 +1,6 @@
 package no.nav.eux.institusjon.webapp.api
 
+import io.github.oshai.kotlinlogging.KotlinLogging.logger
 import io.swagger.v3.oas.annotations.Parameter
 import no.nav.eux.institusjon.model.Institusjon
 import no.nav.eux.institusjon.service.InstitusjonService
@@ -16,6 +17,8 @@ class InstitusjonController(
     val institusjonService: InstitusjonService
 ) {
 
+    val log = logger {}
+
     @Protected
     @GetMapping(
         value = ["/api/v1/institusjoner"],
@@ -29,6 +32,7 @@ class InstitusjonController(
         @RequestParam(value = "landkode", required = false, defaultValue = "")
         landkode: String,
     ): ResponseEntity<List<InstitusjonApiModel>> {
+        log.info { "henter institusjon" }
         return ResponseEntity<List<InstitusjonApiModel>>(
             institusjonService
                 .institusjoner(bucType, landkode)
