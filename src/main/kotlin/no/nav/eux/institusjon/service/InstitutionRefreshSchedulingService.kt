@@ -47,7 +47,6 @@ class InstitutionRefreshSchedulingService(
         val institusjoner = euxRinaApiClient
             .getInstitusjoner(bucType, landkode)
             .institusjoner(bucType)
-
         val key = InstitutionCache.Key(bucType, landkode)
         institutionCache[key] = institusjoner
         log.info { "Oppdaterte cache for $bucType, landkode: $landkode" }

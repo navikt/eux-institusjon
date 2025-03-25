@@ -6,6 +6,13 @@ application:
     app: eux-rina-api-q2
     url: http://eux-rina-api-q2
     scope: api://dev-gcp.eessibasis.eux-rina-api-q2/.default
+  eux-neessi:
+    name: eux-neessi-q2
+    namespace: eessibasis
+
+cluster:
+  fss: dev-fss
+  gcp: dev-gcp
 
 resources:
   limits:

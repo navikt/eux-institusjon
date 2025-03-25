@@ -1,0 +1,25 @@
+name: eux-institusjon-q1
+ingress: https://eux-institusjon-q1.intern.dev.nav.no
+
+application:
+  eux-rina-api:
+    app: eux-rina-api-q1
+    url: http://eux-rina-api-q1
+    scope: api://dev-gcp.eessibasis.eux-rina-api-q1/.default
+  eux-neessi:
+    name: eux-neessi-q1
+    namespace: eessibasis
+
+cluster:
+  fss: dev-fss
+  gcp: dev-gcp
+
+resources:
+  limits:
+    memory: 512Mi
+  requests:
+    memory: 512Mi
+
+replicas:
+  min: 2
+  max: 3
