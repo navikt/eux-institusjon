@@ -1,11 +1,9 @@
 package no.nav.eux.institusjon.webapp.api
 
-import io.github.oshai.kotlinlogging.KotlinLogging.logger
 import io.swagger.v3.oas.annotations.Parameter
 import no.nav.eux.institusjon.model.Institusjon
 import no.nav.eux.institusjon.service.InstitusjonService
 import no.nav.eux.institusjon.webapp.model.InstitusjonApiModel
-import no.nav.security.token.support.core.api.Protected
 import no.nav.security.token.support.core.api.Unprotected
 import org.springframework.http.HttpStatus.OK
 import org.springframework.http.ResponseEntity
@@ -17,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController
 class InstitusjonController(
     val institusjonService: InstitusjonService
 ) {
-
-    val log = logger {}
 
     @Unprotected
     @GetMapping(
@@ -32,17 +28,14 @@ class InstitusjonController(
         @Parameter(example = "NOR")
         @RequestParam(value = "landkode", required = false, defaultValue = "")
         landkode: String,
-    ): ResponseEntity<List<InstitusjonApiModel>> {
-        log.info { "henter institusjon" }
-        return ResponseEntity<List<InstitusjonApiModel>>(
-            institusjonService
-                .institusjoner(bucType, landkode)
-                .toInstitusjonApiModel(),
-            OK
-        )
-    }
+    ) = ResponseEntity<List<InstitusjonApiModel>>(
+        institusjonService
+            .institusjoner(bucType, landkode)
+            .toInstitusjonApiModel(),
+        OK
+    )
 
-    fun List<Institusjon>.toInstitusjonApiModel() = this.map {
+    fun List<Institusjon>.toInstitusjonApiModel() = map {
         InstitusjonApiModel(
             institusjonId = it.institusjonId,
             navn = it.navn,

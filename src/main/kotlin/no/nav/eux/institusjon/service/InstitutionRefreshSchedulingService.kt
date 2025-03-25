@@ -38,18 +38,16 @@ class InstitutionRefreshSchedulingService(
     }
 
     fun refreshInstitutionList(landkode: String) {
-        log.info { "Refreshing institution list for landkode $landkode" }
         bucTyper.forEach { refreshInstitutionList(landkode, it) }
     }
 
     fun refreshInstitutionList(landkode: String, bucType: String) {
-        log.info { "Refreshing institution list for landkode $landkode" }
         val institusjoner = euxRinaApiClient
             .getInstitusjoner(bucType, landkode)
             .institusjoner(bucType)
         val key = InstitutionCache.Key(bucType, landkode)
         institutionCache[key] = institusjoner
-        log.info { "Oppdaterte cache for $bucType, landkode: $landkode" }
+        log.info { "Oppdaterte cache for buc type $bucType, landkode: $landkode" }
     }
 }
 

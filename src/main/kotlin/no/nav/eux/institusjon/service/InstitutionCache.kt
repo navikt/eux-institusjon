@@ -8,9 +8,8 @@ class InstitutionCache(
     val institusjonerMap: HashMap<Key, List<Institusjon>>,
 ) {
 
-    operator fun get(key: Key): List<Institusjon>? {
-        return institusjonerMap[key]
-    }
+    operator fun get(key: Key): List<Institusjon>? =
+        institusjonerMap[key]
 
     operator fun set(key: Key, institusjoner: List<Institusjon>) {
         institusjonerMap[key] = institusjoner

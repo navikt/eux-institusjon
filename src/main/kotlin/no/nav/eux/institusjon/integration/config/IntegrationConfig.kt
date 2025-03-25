@@ -45,6 +45,7 @@ class IntegrationConfig {
             }
         }
     }
+
     infix fun BearerTokenService.interceptorFor(
         client: BearerTokenService.Client
     ) = ClientHttpRequestInterceptor { request, body, execution ->

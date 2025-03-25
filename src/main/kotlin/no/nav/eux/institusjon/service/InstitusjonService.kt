@@ -18,14 +18,14 @@ class InstitusjonService(
         val key = InstitutionCache.Key(bucType, landkode)
         val institusjon = institutionCache[key]
         if (institusjon != null) {
-            log.info { "henter inst fra cache for $bucType, landkode: $landkode" }
+            log.info { "Hentet institusjon fra cache for $bucType, landkode: $landkode" }
             return institusjon
         } else {
             val institusjoner = euxRinaApiClient
                 .getInstitusjoner(bucType, landkode)
                 .institusjoner(bucType)
             institutionCache[key] = institusjoner
-            log.info { "Oppdaterte cache for $bucType, landkode: $landkode" }
+            log.info { "Oppdaterte cache for buc type: $bucType, landkode: $landkode" }
             return institusjoner
         }
     }
