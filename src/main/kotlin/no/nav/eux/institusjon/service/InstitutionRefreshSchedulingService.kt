@@ -51,12 +51,16 @@ class InstitutionRefreshSchedulingService(
     }
 
     fun refreshInstitutionList(landkode: String, bucType: String) {
-        val institusjoner = euxRinaApiClient
-            .getInstitusjoner(bucType, landkode)
-            .institusjoner(bucType)
-        val key = InstitutionCache.Key(bucType, landkode)
-        institutionCache[key] = institusjoner
-        log.info { "Oppdaterte cache for buc type $bucType, landkode: $landkode" }
+        try {
+            val institusjoner = euxRinaApiClient
+                .getInstitusjoner(bucType, landkode)
+                .institusjoner(bucType)
+            val key = InstitutionCache.Key(bucType, landkode)
+            institutionCache[key] = institusjoner
+            log.info { "Oppdaterte cache for buc type $bucType, landkode: $landkode" }
+        } catch (e: Exception) {
+            log.error(e) { "Failed to refresh institution list for $bucType, landkode: $landkode" }
+        }
     }
 }
 
