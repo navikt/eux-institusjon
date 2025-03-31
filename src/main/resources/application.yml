@@ -20,3 +20,14 @@ no.nav.security.jwt:
     azuread:
       discoveryurl: ${AZURE_APP_WELL_KNOWN_URL}
       accepted-audience: ${AZURE_APP_CLIENT_ID}
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      group:
+        readiness:
+          include: readinessState
+        liveness:
+          include: livenessState
