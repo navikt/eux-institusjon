@@ -10,7 +10,7 @@ spec:
   ingresses:
     - {{ ingress }}
   liveness:
-    path: /actuator/health
+    path: /actuator/health/liveness
     port: 8080
     initialDelay: 40
     timeout: 90
@@ -19,7 +19,7 @@ spec:
     enabled: true
     path: /actuator/prometheus
   readiness:
-    path: /actuator/health
+    path: /actuator/health/readiness
     port: 8080
     initialDelay: 60
     timeout: 110
