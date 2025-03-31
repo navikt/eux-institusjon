@@ -31,8 +31,8 @@ class InstitusjonService(
     }
 }
 
-fun List<EuxInstitusjon>.institusjoner(bucType: String): List<Institusjon> {
-    return this
+fun List<EuxInstitusjon>.institusjoner(bucType: String): List<Institusjon> =
+    this
         .filter { euxInstitusjon ->
             euxInstitusjon.tilegnetBucs.any {
                 it.bucType.uppercase() == bucType.uppercase() &&
@@ -47,4 +47,3 @@ fun List<EuxInstitusjon>.institusjoner(bucType: String): List<Institusjon> {
                 bucType = bucType
             )
         }
-}

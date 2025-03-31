@@ -53,9 +53,11 @@ class InstitutionRefreshSchedulingService(
 
 val landkoder = listOf(
     "NOR",
+    "DNK",
     "SWE",
     "BEL",
     "POL",
+    "BGR",
 )
 
 val bucTyper = listOf(
