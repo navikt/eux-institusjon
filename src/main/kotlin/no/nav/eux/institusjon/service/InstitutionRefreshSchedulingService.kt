@@ -6,6 +6,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.event.EventListener
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
+import java.util.concurrent.CompletableFuture
 
 @Service
 class InstitutionRefreshSchedulingService(
@@ -17,8 +18,16 @@ class InstitutionRefreshSchedulingService(
 
     @EventListener(ApplicationReadyEvent::class)
     fun refreshOnStartup() {
-        log.info { "Refreshing institution list on startup" }
-        refreshInstitutionList()
+        log.info { "Triggering asynchronous institution list refresh on startup" }
+        CompletableFuture.runAsync {
+            try {
+                log.info { "Starting asynchronous institution list refresh" }
+                refreshInstitutionList()
+                log.info { "Completed asynchronous institution list refresh" }
+            } catch (e: Exception) {
+                log.error(e) { "Failed to refresh institution list on startup" }
+            }
+        }
     }
 
     @Scheduled(cron = "0 0 4 * * *")
